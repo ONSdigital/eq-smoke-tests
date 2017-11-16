@@ -1,0 +1,31 @@
+{
+  "name": "eq-smoke-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "chimp",
+    "test_headless": "HEADLESS=true chimp",
+    "lint": "eslint ./tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ONSdigital/eq-smoke-tests.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ONSdigital/eq-smoke-tests/issues"
+  },
+  "homepage": "https://github.com/ONSdigital/eq-smoke-tests#readme",
+  "devDependencies": {
+    "eslint": "^4.12.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  },
+  "dependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chimp": "^0.50.2"
+  }
+}
