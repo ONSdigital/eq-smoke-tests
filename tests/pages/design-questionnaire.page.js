@@ -4,7 +4,7 @@ class DesignQuestionnaire {
   }
 
   static setQuestionTitle() {
-    return "#question-page-editor [aria-label='title']";
+    return "#question-page-editor [aria-label='Question']";
   }
 
   static setAnswerTitle() {
