@@ -8,28 +8,28 @@ module.exports = {
 
   webdriverio: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
-    desiredCapabilities: {
-    bail: 1,
-    browserName: "chrome",
-    javascriptEnabled: true,
-    maxInstances: 1,
-    loggingPrefs: {
-      browser: "ALL",
-      driver: "ALL",
-      server: "ALL"
-    },
-    chromeOptions: {
-      args: [
-         process.env.HEADLESS ? "--headless" : "--start-maximized",
-         "--disable-gpu",
-         "--window-size=1920,1080",
-         "--no-sandbox",
-         "--disable-extensions"
-      ]
-    },
     waitforTimeout: 5000,
-    waitforInterval: 2000
-   }
+    waitforInterval: 2000,
+    bail: 1,
+    desiredCapabilities: {
+      browserName: "chrome",
+      javascriptEnabled: true,
+      maxInstances: 1,
+      loggingPrefs: {
+        browser: "ALL",
+        driver: "ALL",
+        server: "ALL"
+      },
+      chromeOptions: {
+        args: [
+          process.env.HEADLESS ? "--headless" : "--start-maximized",
+          "--disable-gpu",
+          "--window-size=1920,1080",
+          "--no-sandbox",
+          "--disable-extensions"
+        ]
+      },
+    }
   },
   seleniumStandaloneOptions: {
     drivers: {
