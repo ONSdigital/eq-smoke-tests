@@ -6,6 +6,7 @@ chai.should();
 
 const AuthorHelpers = require('../author-helpers');
 const DesignQuestionnairePage = require('../pages/design-questionnaire.page');
+const DesignQuestionnaireNavigationPage = require('../pages/design-questionnaire-navigation.page');
 
 describe('eQ Services Smoke Test', () => {
   it('should update navigation title when section title changed', () =>
@@ -23,7 +24,7 @@ describe('eQ Services Smoke Test', () => {
 
     // // Adds second Question
       .click(DesignQuestionnairePage.clickAddPage())
-      .waitForExist(DesignQuestionnairePage.setQuestionTitle())
+      .waitForExist(DesignQuestionnaireNavigationPage.page(2))
       .setValue(DesignQuestionnairePage.setQuestionTitle(), 'Test Question 2')
       .click(DesignQuestionnairePage.clickAddAnswer())
       .click(DesignQuestionnairePage.selectTextFieldAnswer())

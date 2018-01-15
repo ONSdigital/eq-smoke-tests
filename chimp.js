@@ -9,7 +9,7 @@ module.exports = {
   webdriverio: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     waitforTimeout: 5000,
-    waitforInterval: 2000,
+    waitforInterval: 200,
     bail: 1,
     desiredCapabilities: {
       browserName: "chrome",
