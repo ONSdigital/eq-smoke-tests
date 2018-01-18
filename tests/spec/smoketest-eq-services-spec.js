@@ -9,42 +9,49 @@ const DesignQuestionnairePage = require('../pages/design-questionnaire.page');
 const DesignQuestionnaireNavigationPage = require('../pages/design-questionnaire-navigation.page');
 
 describe('eQ Services Smoke Test', () => {
-  it('should update navigation title when section title changed', () =>
-    AuthorHelpers.createQuestionnaire('Smoke Test title', 'smoke test description', 'default', 'StatisticsOfTradeAct')
+  it('should update navigation title when section title changed', async () => {
+    await AuthorHelpers.start();
+    await AuthorHelpers.signIn();
+    await AuthorHelpers.createQuestionnaire('Smoke Test title', 'smoke test description', 'default', 'StatisticsOfTradeAct');
 
     // Adds section title
-      .setValue(DesignQuestionnairePage.setSectionTitle(), 'eQ Services Smoke Test')
+    await browser
+      .setValue(DesignQuestionnairePage.setSectionTitle(), 'eQ Services Smoke Test');
 
     // Adds first question
-      .setValue(DesignQuestionnairePage.setQuestionTitle(), 'Test Question 1')
+    await browser.setValue(DesignQuestionnairePage.setQuestionTitle(), 'Test Question 1')
       .click(DesignQuestionnairePage.clickAddAnswer())
       .click(DesignQuestionnairePage.selectTextFieldAnswer())
       .waitForExist(DesignQuestionnairePage.setAnswerTitle())
-      .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 1')
+      .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 1');
 
-    // // Adds second Question
+    // Adds second Question
+    await browser
       .click(DesignQuestionnairePage.clickAddPage())
       .waitForExist(DesignQuestionnaireNavigationPage.page(2))
       .setValue(DesignQuestionnairePage.setQuestionTitle(), 'Test Question 2')
       .click(DesignQuestionnairePage.clickAddAnswer())
       .click(DesignQuestionnairePage.selectTextFieldAnswer())
       .waitForExist(DesignQuestionnairePage.setAnswerTitle())
-      .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 2')
+      .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 2');
 
     // Preview and verifies the newly created questionnaire
+    await browser
       .click(DesignQuestionnairePage.clickPreview())
       .getTabIds()
       .then(tabIds => browser.switchTab(tabIds[1]))
       .getTitle().should.eventually.equal('Test Question 1 - Smoke Test title')
-      .getText(DesignQuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test')
+      .getText(DesignQuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test');
 
-    // // Edits the title and previews the survey again to assert
-    // // the edited title and confirm that we are not caching data
+    // Edits the title and previews the survey again to assert
+    // the edited title and confirm that we are not caching data
+    await browser
       .getTabIds()
       .then(tabIds => browser.switchTab(tabIds[0]))
       .setValue(DesignQuestionnairePage.setSectionTitle(), ' - Edited')
       .click(DesignQuestionnairePage.clickPreview())
       .getTabIds()
       .then(tabIds => browser.switchTab(tabIds[2]))
-      .getText(DesignQuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test - Edited'));
+      .getText(DesignQuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test - Edited');
+  });
 });
