@@ -2,8 +2,20 @@ const AuthorHome = require('./pages/author-home.page');
 const CreateQuestionnairePage = require('./pages/create-questionnaire.page');
 const DesignQuestionnairePage = require('./pages/design-questionnaire.page');
 
+function start() {
+  return browser.url('/');
+}
+
+function signIn() {
+  return browser
+    .waitForExist('button')
+    .click('button')
+    .pause(100);
+}
+
+
 function createQuestionnaire(title, description, theme, legalBasis) {
-  return browser.url('/')
+  return browser
     .click(AuthorHome.createQuestionnaireButton())
     .setValue(CreateQuestionnairePage.questionnaireTitle(), title)
     .setValue(CreateQuestionnairePage.questionnaireDescription(), description)
@@ -17,4 +29,6 @@ function createQuestionnaire(title, description, theme, legalBasis) {
 
 module.exports = {
   createQuestionnaire,
+  signIn,
+  start,
 };
