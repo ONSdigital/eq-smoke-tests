@@ -21,7 +21,9 @@ describe('eQ Services Smoke Test', () => {
     // Adds first question
     await browser.setValue(DesignQuestionnairePage.setQuestionTitle(), 'Test Question 1')
       .click(DesignQuestionnairePage.clickAddAnswer())
+      .pause(500)
       .click(DesignQuestionnairePage.selectTextFieldAnswer())
+      .pause(500)
       .waitForExist(DesignQuestionnairePage.setAnswerTitle())
       .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 1');
 
@@ -31,7 +33,9 @@ describe('eQ Services Smoke Test', () => {
       .waitForExist(DesignQuestionnaireNavigationPage.page(2))
       .setValue(DesignQuestionnairePage.setQuestionTitle(), 'Test Question 2')
       .click(DesignQuestionnairePage.clickAddAnswer())
+      .pause(500)
       .click(DesignQuestionnairePage.selectTextFieldAnswer())
+      .pause(500)
       .waitForExist(DesignQuestionnairePage.setAnswerTitle())
       .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 2');
 
