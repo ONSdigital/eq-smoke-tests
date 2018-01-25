@@ -20,7 +20,7 @@ class DesignQuestionnaire {
   }
 
   static clickAddAnswer() {
-    return "button[id='add-answer-btn']";
+    return "button[id='add-answer-button']";
   }
 
   static clickAddPage() {
