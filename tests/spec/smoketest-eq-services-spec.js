@@ -5,8 +5,10 @@ chai.use(chaiAsPromised);
 chai.should();
 
 const AuthorHelpers = require('../author-helpers');
-const DesignQuestionnairePage = require('../pages/design-questionnaire.page');
-const DesignQuestionnaireNavigationPage = require('../pages/design-questionnaire-navigation.page');
+const DesignQuestionnairePage = require('../pages/author/design-questionnaire.page');
+const DesignQuestionnaireNavigationPage = require('../pages/author/design-questionnaire-navigation.page');
+const QuestionnairePage = require('../pages/runner/questionnaire.page');
+const ThankYouPage = require('../pages/runner/thank-you.page');
 
 describe('eQ Services Smoke Test', () => {
   it('should update navigation title when section title changed', async () => {
@@ -45,7 +47,7 @@ describe('eQ Services Smoke Test', () => {
       .getTabIds()
       .then(tabIds => browser.switchTab(tabIds[1]))
       .getTitle().should.eventually.equal('Test Question 1 - Smoke Test title')
-      .getText(DesignQuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test');
+      .getText(QuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test');
 
     // Edits the title and previews the survey again to assert
     // the edited title and confirm that we are not caching data
@@ -56,6 +58,13 @@ describe('eQ Services Smoke Test', () => {
       .click(DesignQuestionnairePage.clickPreview())
       .getTabIds()
       .then(tabIds => browser.switchTab(tabIds[2]))
-      .getText(DesignQuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test - Edited');
+      .getText(QuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test - Edited')
+
+      // Check preview questionnaire can be submitted
+      .click(QuestionnairePage.clickContinue())
+      .click(QuestionnairePage.clickContinue())
+      .getText(QuestionnairePage.getBlockTitle()).should.eventually.equal('You are now ready to submit this survey')
+      .click(QuestionnairePage.clickContinue())
+      .getText(ThankYouPage.getHeading()).should.eventually.equal('Submission Successful');
   });
 });
