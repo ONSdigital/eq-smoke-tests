@@ -13,14 +13,11 @@ function signIn() {
     .pause(100);
 }
 
-
-function createQuestionnaire(title, description, theme, legalBasis) {
+function createQuestionnaire(title) {
   return browser
     .click(AuthorHome.createQuestionnaireButton())
+    .waitForExist(AuthorHome.createQuestionnaireForm())
     .setValue(CreateQuestionnairePage.questionnaireTitle(), title)
-    .setValue(CreateQuestionnairePage.questionnaireDescription(), description)
-    .selectByVisibleText(CreateQuestionnairePage.questionnaireTheme(), theme)
-    .selectByVisibleText(CreateQuestionnairePage.questionnaireLegalBasis(), legalBasis)
     .click(CreateQuestionnairePage.navigationToggle())
     .click(CreateQuestionnairePage.createButton())
     .waitForExist(DesignQuestionnairePage.setSectionTitle())
