@@ -1,6 +1,6 @@
-const AuthorHome = require('./pages/author-home.page');
-const CreateQuestionnairePage = require('./pages/create-questionnaire.page');
-const DesignQuestionnairePage = require('./pages/design-questionnaire.page');
+const AuthorHome = require('./pages/author/author-home.page');
+const CreateQuestionnairePage = require('./pages/author/create-questionnaire.page');
+const DesignQuestionnairePage = require('./pages/author/design-questionnaire.page');
 
 function start() {
   return browser.url('/');

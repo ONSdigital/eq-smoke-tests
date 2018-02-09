@@ -11,10 +11,6 @@ class DesignQuestionnaire {
     return "#question-page-editor [id='label']";
   }
 
-  static getBlockTitle() {
-    return "p[data-qa='block-title']";
-  }
-
   static getFirstSectionTitle() {
     return "h3[class*='SectionTitle']";
   }
