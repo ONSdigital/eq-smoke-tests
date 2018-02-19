@@ -41,6 +41,7 @@ describe('eQ Services Smoke Test', () => {
       .waitForExist(DesignQuestionnairePage.setAnswerTitle())
       .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 2');
 
+
     // Preview and verifies the newly created questionnaire
     await browser
       .click(DesignQuestionnairePage.clickPreview())

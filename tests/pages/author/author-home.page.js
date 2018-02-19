@@ -1,6 +1,6 @@
 class AuthorHome {
   static createQuestionnaireButton() {
-    return '#btn-create-questionnaire';
+    return '[data-test="create-questionnaire"]';
   }
 
   static createQuestionnaireForm() {

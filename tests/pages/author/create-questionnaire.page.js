@@ -1,26 +1,10 @@
 class CreateQuestionnaire {
   static questionnaireTitle() {
-    return '#title';
-  }
-
-  static questionnaireDescription() {
-    return '#description';
-  }
-
-  static questionnaireTheme() {
-    return '#theme';
-  }
-
-  static questionnaireLegalBasis() {
-    return '#legalBasis';
+    return '[data-test="txt-questionnaire-title"]';
   }
 
   static navigationToggle() {
     return "label[for='navigation']";
-  }
-
-  static navigationCheckbox() {
-    return '#navigation';
   }
 
   static createButton() {
