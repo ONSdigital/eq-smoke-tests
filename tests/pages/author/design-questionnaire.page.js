@@ -1,14 +1,14 @@
 class DesignQuestionnaire {
   static setSectionTitle() {
-    return "#section-editor [aria-label='title']";
+    return "[data-testid='txt-section-title']";
   }
 
   static setQuestionTitle() {
-    return "#question-page-editor [aria-label='Question']";
+    return "[data-testid='txt-question-title']";
   }
 
   static setAnswerTitle() {
-    return "#question-page-editor [id='label']";
+    return "[data-test='txt-answer-label']";
   }
 
   static getFirstSectionTitle() {
@@ -16,11 +16,11 @@ class DesignQuestionnaire {
   }
 
   static clickAddAnswer() {
-    return "button[id='add-answer-button']";
+    return "[data-test='btn-add-answer']";
   }
 
   static clickAddPage() {
-    return "#root [id='btn-add-page']";
+    return "[data-test='btn-add-page']";
   }
 
   static selectTextFieldAnswer() {
@@ -28,7 +28,7 @@ class DesignQuestionnaire {
   }
 
   static getBreadCrumb() {
-    return "ol[class*='Breadcrumb']";
+    return "[data-test='breadcrumb']";
   }
 
   static clickPreview() {
