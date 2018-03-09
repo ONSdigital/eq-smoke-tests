@@ -1073,6 +1073,16 @@ chromedriver@^2.28:
     mkdirp "^0.5.1"
     request "^2.83.0"
 
+chromedriver@^2.36.0:
+  version "2.36.0"
+  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-2.36.0.tgz#6a9473e11b50e7181ef8cd6476680e7f167374cd"
+  dependencies:
+    del "^3.0.0"
+    extract-zip "^1.6.5"
+    kew "^0.7.0"
+    mkdirp "^0.5.1"
+    request "^2.83.0"
+
 circular-json@^0.3.1:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
