@@ -2,6 +2,7 @@ module.exports = {
   path: "tests/spec",
   log: "debug",
   sync: false,
+  debug: true,
 
   chai: true,
   mocha: true,
@@ -29,13 +30,6 @@ module.exports = {
           "--disable-extensions"
         ]
       },
-    }
-  },
-  seleniumStandaloneOptions: {
-    drivers: {
-      chrome: {
-        version: "2.36"
-      }
     }
   }
 };
