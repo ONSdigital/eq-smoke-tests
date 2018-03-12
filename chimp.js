@@ -31,5 +31,12 @@ module.exports = {
         ]
       },
     }
+  },
+  seleniumStandaloneOptions: {
+    drivers: {
+      chrome: {
+        version: "2.36"
+      }
+    }
   }
 };
