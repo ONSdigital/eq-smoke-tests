@@ -2,6 +2,7 @@ module.exports = {
   path: "tests/spec",
   log: "debug",
   sync: false,
+  debug: true,
 
   chai: true,
   mocha: true,
@@ -34,7 +35,7 @@ module.exports = {
   seleniumStandaloneOptions: {
     drivers: {
       chrome: {
-        version: "2.32"
+        version: "2.37"
       }
     }
   }
