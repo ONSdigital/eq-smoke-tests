@@ -66,6 +66,6 @@ describe('eQ Services Smoke Test', () => {
       .click(QuestionnairePage.clickContinue())
       .getText(QuestionnairePage.getBlockTitle()).should.eventually.equal('You are now ready to submit this survey')
       .click(QuestionnairePage.clickContinue())
-      .getText(ThankYouPage.getHeading()).should.eventually.equal('Submission Successful');
+      .getText(ThankYouPage.getHeading()).should.eventually.equal('Submission successful');
   });
 });
