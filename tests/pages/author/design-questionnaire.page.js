@@ -1,10 +1,18 @@
 class DesignQuestionnaire {
+  static sectionLink() {
+    return "[data-test='nav-section-link']";
+  }
+
+  static pageLink() {
+    return "[data-test='page-item']";
+  }
+
   static setSectionTitle() {
     return "[data-testid='txt-section-title']";
   }
 
   static setQuestionTitle() {
-    return "[data-testid='txt-question-title']";
+    return "[data-testid='txt-question-title'] ";
   }
 
   static setAnswerTitle() {
@@ -33,6 +41,16 @@ class DesignQuestionnaire {
 
   static clickPreview() {
     return "a[class*='IconLink']";
+  }
+
+  static addAnswer(title) {
+    return browser
+      .click(DesignQuestionnaire.clickAddAnswer())
+      .pause(500)
+      .click(DesignQuestionnaire.selectTextFieldAnswer())
+      .pause(500)
+      .waitForExist(DesignQuestionnaire.setAnswerTitle())
+      .setValue(DesignQuestionnaire.setAnswerTitle(), title);
   }
 }
 module.exports = DesignQuestionnaire;
