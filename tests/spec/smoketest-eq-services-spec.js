@@ -4,102 +4,68 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 chai.should();
 
-const { start, signIn, createQuestionnaire } = require('../author-helpers');
-
-const {
-  sectionLink,
-  getBreadCrumb,
-  setQuestionTitle,
-  setSectionTitle,
-  addAnswer,
-  clickAddPage,
-  clickPreview,
-} = require('../pages/author/design-questionnaire.page');
-
-const {
-  page,
-} = require('../pages/author/design-questionnaire-navigation.page');
-
-const {
-  getBlockTitle,
-  clickContinue,
-} = require('../pages/runner/questionnaire.page');
-
-const { getHeading } = require('../pages/runner/thank-you.page');
+const AuthorHelpers = require('../author-helpers');
+const DesignQuestionnairePage = require('../pages/author/design-questionnaire.page');
+const DesignQuestionnaireNavigationPage = require('../pages/author/design-questionnaire-navigation.page');
+const QuestionnairePage = require('../pages/runner/questionnaire.page');
+const ThankYouPage = require('../pages/runner/thank-you.page');
 
 describe('eQ Services Smoke Test', () => {
   it('should update navigation title when section title changed', async () => {
-    const title = 'Smoke Test title';
-
-    await start();
-    await signIn();
-
-    await createQuestionnaire(title);
-
-    const breadcrumb = getBreadCrumb();
-    const breadcrumbText = await browser
-      .waitForExist(breadcrumb)
-      .getText(breadcrumb);
-
-    expect(breadcrumbText).contain(title);
+    await AuthorHelpers.start();
+    await AuthorHelpers.signIn();
+    await AuthorHelpers.createQuestionnaire('Smoke Test title', 'smoke test description', 'default', 'StatisticsOfTradeAct');
 
     // Adds section title
     await browser
-      .click(sectionLink())
-      .setValue(setSectionTitle(), 'eQ Services Smoke Test');
+      .setValue(DesignQuestionnairePage.setSectionTitle(), 'eQ Services Smoke Test');
 
     // Adds first question
-    await browser
-      .click(page(1))
-      .setValue(setQuestionTitle(), 'Test Question 1');
-
-    await addAnswer('Test Answer 1');
+    await browser.setValue(DesignQuestionnairePage.setQuestionTitle(), 'Test Question 1')
+      .click(DesignQuestionnairePage.clickAddAnswer())
+      .pause(500)
+      .click(DesignQuestionnairePage.selectTextFieldAnswer())
+      .pause(500)
+      .waitForExist(DesignQuestionnairePage.setAnswerTitle())
+      .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 1');
 
     // Adds second Question
     await browser
-      .click(clickAddPage())
-      .waitForExist(page(2))
-      .setValue(setQuestionTitle(), 'Test Question 2');
+      .click(DesignQuestionnairePage.clickAddPage())
+      .waitForExist(DesignQuestionnaireNavigationPage.page(2))
+      .setValue(DesignQuestionnairePage.setQuestionTitle(), 'Test Question 2')
+      .click(DesignQuestionnairePage.clickAddAnswer())
+      .pause(500)
+      .click(DesignQuestionnairePage.selectTextFieldAnswer())
+      .pause(500)
+      .waitForExist(DesignQuestionnairePage.setAnswerTitle())
+      .setValue(DesignQuestionnairePage.setAnswerTitle(), 'Test Answer 2');
 
-    await addAnswer('Test Answer 2');
 
     // Preview and verifies the newly created questionnaire
     await browser
-      .click(clickPreview())
+      .click(DesignQuestionnairePage.clickPreview())
       .getTabIds()
-      .then(tabIds => browser.switchTab(tabIds[1]));
-
-    const previewTitle = await browser.getTitle();
-    expect(previewTitle).equal('Test Question 1 - Smoke Test title');
-
-    let blockTitle = await browser.getText(getBlockTitle());
-    expect(blockTitle).equal('eQ Services Smoke Test');
+      .then(tabIds => browser.switchTab(tabIds[1]))
+      .getTitle().should.eventually.equal('Test Question 1 - Smoke Test title')
+      .getText(QuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test');
 
     // Edits the title and previews the survey again to assert
     // the edited title and confirm that we are not caching data
     await browser
       .getTabIds()
       .then(tabIds => browser.switchTab(tabIds[0]))
-      .click(sectionLink())
-      .pause(500)
-
-      .setValue(setSectionTitle(), 'Edited ')
-      .click(clickPreview())
+      .setValue(DesignQuestionnairePage.setSectionTitle(), ' - Edited')
+      .click(DesignQuestionnairePage.clickPreview())
       .getTabIds()
-      .then(tabIds => browser.switchTab(tabIds[2]));
+      .then(tabIds => browser.switchTab(tabIds[2]))
+      .getText(QuestionnairePage.getBlockTitle()).should.eventually.equal('eQ Services Smoke Test - Edited')
 
-    blockTitle = await browser.getText(getBlockTitle());
-    expect(blockTitle).equal('Edited eQ Services Smoke Test');
-
-    // Check preview questionnaire can be submitted
-    await browser.click(clickContinue()).click(clickContinue());
-
-    blockTitle = await browser.getText(getBlockTitle());
-    expect(blockTitle).equal('You are now ready to submit this survey');
-
-    await browser.click(clickContinue());
-
-    const pageTitle = await browser.getText(getHeading());
-    expect(pageTitle).equal('Submission successful');
+      // Check preview questionnaire can be submitted
+      .click(QuestionnairePage.clickContinue())
+      .click(QuestionnairePage.clickContinue())
+      .getText(QuestionnairePage.getBlockTitle()).should.eventually.equal('You are now ready to submit this survey')
+      .click(QuestionnairePage.clickContinue())
+      .getText(ThankYouPage.getHeading()).should.eventually.equal('Submission successful');
   });
 });
