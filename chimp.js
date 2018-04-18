@@ -33,7 +33,7 @@ module.exports = {
   seleniumStandaloneOptions: {
     drivers: {
       chrome: {
-        version: '2.37',
+        version: '2.32',
       },
     },
   },
