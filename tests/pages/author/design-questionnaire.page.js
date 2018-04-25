@@ -3,6 +3,10 @@ class DesignQuestionnaire {
     return "[data-test='nav-section-link']";
   }
 
+  static getQuestionnaireTitle() {
+    return "[data-test='questionnaire-title']";
+  }
+
   static pageLink() {
     return "[data-test='page-item']";
   }
@@ -35,22 +39,8 @@ class DesignQuestionnaire {
     return "button[title='Text']";
   }
 
-  static getBreadCrumb() {
-    return "[data-test='breadcrumb']";
-  }
-
   static clickPreview() {
-    return "a[class*='IconLink']";
-  }
-
-  static addAnswer(title) {
-    return browser
-      .click(DesignQuestionnaire.clickAddAnswer())
-      .pause(500)
-      .click(DesignQuestionnaire.selectTextFieldAnswer())
-      .pause(500)
-      .waitForExist(DesignQuestionnaire.setAnswerTitle())
-      .setValue(DesignQuestionnaire.setAnswerTitle(), title);
+    return "[data-test='btn-preview']";
   }
 }
 module.exports = DesignQuestionnaire;
