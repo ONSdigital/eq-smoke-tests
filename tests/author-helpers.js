@@ -36,5 +36,5 @@ module.exports = {
   createQuestionnaire,
   signIn,
   start,
-  addAnswer
+  addAnswer,
 };
