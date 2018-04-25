@@ -4,14 +4,18 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 chai.should();
 
-const { start, signIn, createQuestionnaire } = require('../author-helpers');
+const {
+  start,
+  signIn,
+  createQuestionnaire,
+  addAnswer,
+} = require('../author-helpers');
 
 const {
   sectionLink,
-  getBreadCrumb,
+  getQuestionnaireTitle,
   setQuestionTitle,
   setSectionTitle,
-  addAnswer,
   clickAddPage,
   clickPreview,
 } = require('../pages/author/design-questionnaire.page');
@@ -36,12 +40,12 @@ describe('eQ Services Smoke Test', () => {
 
     await createQuestionnaire(title);
 
-    const breadcrumb = getBreadCrumb();
-    const breadcrumbText = await browser
-      .waitForExist(breadcrumb)
-      .getText(breadcrumb);
+    const questionnaireTitleSelector = getQuestionnaireTitle();
+    const questionnaireTitle = await browser
+      .waitForExist(questionnaireTitleSelector)
+      .getText(questionnaireTitleSelector);
 
-    expect(breadcrumbText).contain(title);
+    expect(questionnaireTitle).contain(title);
 
     // Adds section title
     await browser
