@@ -4,7 +4,7 @@ class AuthorHome {
   }
 
   static createQuestionnaireForm() {
-    return '[data-test="questionnaire-settings-form"]';
+    return '[data-testid="questionnaire-settings-modal]';
   }
 }
 module.exports = AuthorHome;
