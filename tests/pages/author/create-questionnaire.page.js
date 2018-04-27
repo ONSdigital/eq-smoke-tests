@@ -1,6 +1,8 @@
+import { get } from '../../utils';
+
 class CreateQuestionnaire {
   static questionnaireTitle() {
-    return '[data-test="txt-questionnaire-title"]';
+    return get('txt-questionnaire-title');
   }
 
   static navigationToggle() {

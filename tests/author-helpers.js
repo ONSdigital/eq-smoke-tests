@@ -1,3 +1,4 @@
+const { get } = require('./utils');
 const AuthorHome = require('./pages/author/author-home.page');
 const CreateQuestionnairePage = require('./pages/author/create-questionnaire.page');
 const DesignQuestionnaire = require('./pages/author/design-questionnaire.page');
@@ -32,9 +33,19 @@ function addAnswer(title) {
     .setValue(DesignQuestionnaire.setAnswerTitle(), title);
 }
 
+function addSection() {
+  return browser.click(get('btn-add')).click(get('btn-add-section'));
+}
+
+function addQuestionPage() {
+  return browser.click(get('btn-add')).click(get('btn-add-question-page'));
+}
+
 module.exports = {
   createQuestionnaire,
   signIn,
   start,
   addAnswer,
+  addSection,
+  addQuestionPage,
 };
