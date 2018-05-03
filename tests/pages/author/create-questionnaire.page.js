@@ -1,8 +1,8 @@
-import { get } from '../../utils';
+import { testId } from '../../utils';
 
 class CreateQuestionnaire {
   static questionnaireTitle() {
-    return get('txt-questionnaire-title');
+    return testId('txt-questionnaire-title');
   }
 
   static navigationToggle() {

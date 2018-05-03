@@ -1,28 +1,28 @@
-const { get } = require('../../utils');
+const { testId } = require('../../utils');
 
 class DesignQuestionnaire {
   static sectionLink() {
-    return get('nav-section-link');
+    return testId('nav-section-link');
   }
 
   static getQuestionnaireTitle() {
-    return get('questionnaire-title');
+    return testId('questionnaire-title');
   }
 
   static pageLink() {
-    return get('page-item');
+    return testId('page-item');
   }
 
   static setSectionTitle() {
-    return get('txt-section-title', 'data-testid');
+    return testId('txt-section-title', 'data-testid');
   }
 
   static setQuestionTitle() {
-    return get('txt-question-title', 'data-testid');
+    return testId('txt-question-title', 'data-testid');
   }
 
   static setAnswerTitle() {
-    return get('txt-answer-label');
+    return testId('txt-answer-label');
   }
 
   static getFirstSectionTitle() {
@@ -30,11 +30,11 @@ class DesignQuestionnaire {
   }
 
   static clickAddAnswer() {
-    return get('btn-add-answer');
+    return testId('btn-add-answer');
   }
 
   static clickAddPage() {
-    return get('btn-add-page');
+    return testId('btn-add-page');
   }
 
   static selectTextFieldAnswer() {
@@ -42,7 +42,7 @@ class DesignQuestionnaire {
   }
 
   static clickPreview() {
-    return get('btn-preview');
+    return testId('btn-preview');
   }
 }
 module.exports = DesignQuestionnaire;

@@ -1,12 +1,12 @@
-const { get } = require('../../utils');
+const { testId } = require('../../utils');
 
 class AuthorHome {
   static createQuestionnaireButton() {
-    return get('create-questionnaire');
+    return testId('create-questionnaire');
   }
 
   static createQuestionnaireForm() {
-    return get('questionnaire-settings-modal', 'data-testid');
+    return testId('questionnaire-settings-modal', 'data-testid');
   }
 }
 module.exports = AuthorHome;
