@@ -9,6 +9,7 @@ const {
   signIn,
   createQuestionnaire,
   addAnswer,
+  addQuestionPage,
 } = require('../author-helpers');
 
 const {
@@ -16,7 +17,6 @@ const {
   getQuestionnaireTitle,
   setQuestionTitle,
   setSectionTitle,
-  clickAddPage,
   clickPreview,
 } = require('../pages/author/design-questionnaire.page');
 
@@ -60,8 +60,7 @@ describe('eQ Services Smoke Test', () => {
     await addAnswer('Test Answer 1');
 
     // Adds second Question
-    await browser
-      .click(clickAddPage())
+    await addQuestionPage()
       .waitForExist(page(2))
       .setValue(setQuestionTitle(), 'Test Question 2');
 

@@ -1,6 +1,8 @@
+import { testId } from '../../utils';
+
 class CreateQuestionnaire {
   static questionnaireTitle() {
-    return '[data-test="txt-questionnaire-title"]';
+    return testId('txt-questionnaire-title');
   }
 
   static navigationToggle() {
