@@ -85,8 +85,12 @@ describe('eQ Services Smoke Test', () => {
       .then(tabIds => browser.switchTab(tabIds[0]))
       .click(sectionLink())
       .pause(500)
-
       .setValue(setSectionTitle(), 'Edited ')
+      .click('body')
+      .waitUntil(() =>
+        browser
+          .getText(sectionLink())
+          .then(text => text !== 'eQ Services Smoke Test'))
       .click(clickPreview())
       .getTabIds()
       .then(tabIds => browser.switchTab(tabIds[2]));

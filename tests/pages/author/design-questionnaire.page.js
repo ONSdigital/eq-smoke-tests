@@ -25,10 +25,6 @@ class DesignQuestionnaire {
     return testId('txt-answer-label');
   }
 
-  static getFirstSectionTitle() {
-    return "h3[class*='SectionTitle']";
-  }
-
   static clickAddAnswer() {
     return testId('btn-add-answer');
   }
