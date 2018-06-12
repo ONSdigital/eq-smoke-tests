@@ -86,7 +86,7 @@ describe('eQ Services Smoke Test', () => {
       .click(sectionLink())
       .pause(500)
       .setValue(setSectionTitle(), 'Edited ')
-      .click('body')
+      .click(getQuestionnaireTitle())
       .waitUntil(() =>
         browser
           .getText(sectionLink())
@@ -99,11 +99,7 @@ describe('eQ Services Smoke Test', () => {
     expect(blockTitle).equal('Edited eQ Services Smoke Test');
 
     // Check preview questionnaire can be submitted
-    await browser
-      .click(clickContinue())
-      .pause(1000)
-      .click(clickContinue())
-      .pause(1000);
+    await browser.click(clickContinue()).click(clickContinue());
 
     blockTitle = await browser.getText(getBlockTitle());
     expect(blockTitle).equal('You are now ready to submit this survey');
