@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "chimp",
-    "test_headless": "HEADLESS=true chimp",
-    "lint": "eslint ./tests/"
+    "test": "CYPRESS_baseUrl=${BASE_URL:=http://localhost:3000/} cypress run",
+    "test_headless": "CYPRESS_baseUrl=${BASE_URL:=http://localhost:3000/} cypress run --browser electron",
+    "lint": "eslint ./tests/",
+    "cypress:open": "CYPRESS_baseUrl=${BASE_URL:=http://localhost:3000/} cypress open",
+    "test:compose": "CYPRESS_baseUrl=${BASE_URL:=http://localhost:3000/} ./scripts/eq-compose.sh"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
   "dependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
-    "chimp": "^0.51.1"
+    "cypress": "^3.0.2",
+    "wait-on": "^2.1.0"
   }
 }
