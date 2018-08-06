@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl https://raw.githubusercontent.com/ONSdigital/eq-compose/master/eq.yml > docker-compose.yml
+curl https://raw.githubusercontent.com/ONSdigital/eq-compose/master/docker-compose.yml > docker-compose.yml
 
 docker-compose -f docker-compose.yml -f author-override.yml up &
 pid=$!
