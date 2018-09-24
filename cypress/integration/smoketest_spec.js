@@ -57,8 +57,6 @@ describe("eq-services", () => {
 
         it("Contains all the necessary fields in the correct formatting", () => {
 
-            cy.get(testId(`block-title`, "qa")).should("contain", "This is Section 1");
-
             cy.get(testId(`question-title`, "qa")).should("contain", "This is Page 1");
 
             cy.get(testId(`input-text`, "qa")).should("exist");
