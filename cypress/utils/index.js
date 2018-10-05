@@ -15,7 +15,7 @@ export const addQuestionnaire = title => {
 };
 
 export function setQuestionnaireSettings(name) {
-    cy.get(`[data-testid="questionnaire-settings-modal"]`).within(() => {
+    cy.get(testId("questionnaire-settings-modal")).within(() => {
         cy
             .get(testId("txt-questionnaire-title"))
             .clear()
