@@ -59,7 +59,7 @@ describe("eq-services", () => {
 
             cy.get(testId(`question-title`, "qa")).should("contain", "This is Page 1");
 
-            cy.get(testId(`input-text`, "qa")).should("exist");
+            cy.get(testId(`input-number`, "qa")).should("exist");
         });
     });
 
