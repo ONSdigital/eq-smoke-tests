@@ -6,49 +6,14 @@ import {
 } from "../utils";
 
 describe("eq-services", () => {
-  let token;
-
-  function restoreLocalStorageAuth() {
-    console.log("restore", token);
-    if (token) {
-      localStorage.setItem("accessToken", token);
-    }
-  }
-
-  function cacheLocalStorageAuth() {
-    const windowToken = localStorage.getItem("accessToken");
-    console.log("cache", token);
-    if (windowToken) {
-      token = windowToken;
-    }
-  }
-
-  beforeEach(() => {
-    cy.log("before Each", token);
-    if (token) {
-      localStorage.setItem("accessToken", token);
-    }
-    cy.wait(1000);
-  });
-  afterEach(() => {
-    const windowToken = localStorage.getItem("accessToken");
-    cy.log("after each", token);
-    if (windowToken) {
-      token = windowToken;
-    }
-  });
-
-  Cypress.on("window:before:load", restoreLocalStorageAuth);
-  Cypress.on("window:before:unload", cacheLocalStorageAuth);
-
   describe("Questionnaire creation", () => {
     it("Can create a questionnaire", () => {
+      // Can create a questionnair
       cy.visit("/");
       signIn();
       addQuestionnaire("My Questionnaire Title");
-    });
 
-    it("Can name the Page and Section", () => {
+      // Can name the Page and Section
       cy.get(testId("page-item")).click();
       typeIntoDraftEditor(
         testId("txt-question-title", "testid"),
@@ -64,9 +29,8 @@ describe("eq-services", () => {
       );
 
       cy.get(testId("side-nav")).should("contain", "This is Section 1");
-    });
 
-    it("Can add a answer", () => {
+      // Can add a answer"
       cy.get(testId("page-item")).click();
 
       cy.get(testId("btn-add-answer")).click();
@@ -78,16 +42,15 @@ describe("eq-services", () => {
       cy.get("[data-test='txt-answer-description']").type(
         "This is an answer description"
       );
-    });
-  });
 
-  describe("Runner previewing", () => {
-    it("can switch to a Runner preview.", () => {
+      // can switch to a Runner preview.", () => {
       cy.get(`[data-test="btn-preview"]`)
         .invoke("removeAttr", "target")
         .click();
     });
+  });
 
+  describe("Runner previewing", () => {
     it("Contains all the necessary fields in the correct formatting", () => {
       cy.get(testId(`question-title`, "qa")).should(
         "contain",
