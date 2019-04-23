@@ -6,58 +6,61 @@ import {
 } from "../utils";
 
 describe("eq-services", () => {
-  describe("Questionnaire creation", () => {
-    it("Can create a questionnaire", () => {
-      // Can create a questionnair
-      cy.visit("/");
-      signIn();
-      addQuestionnaire("My Questionnaire Title");
+  const title = "My Questionnaire Title";
 
-      // Can name the Page and Section
-      cy.get(testId("page-item")).click();
-      typeIntoDraftEditor(
-        testId("txt-question-title", "testid"),
-        "This is Page 1"
-      );
-      cy.get(testId("side-nav")).should("contain", "This is Page 1");
+  beforeEach(() => {
+    cy.visit("/");
+  });
+  it("Can create a questionnaire in author", () => {
+    // Can create a questionnair
+    signIn();
 
-      cy.get(testId("nav-section-link")).click();
+    addQuestionnaire(title);
 
-      typeIntoDraftEditor(
-        testId("txt-section-title", "testid"),
-        "This is Section 1"
-      );
+    // Can name the Page and Section
+    cy.get(testId("page-item")).click();
+    typeIntoDraftEditor(
+      testId("txt-question-title", "testid"),
+      "This is Page 1"
+    );
+    cy.get(testId("side-nav")).should("contain", "This is Page 1");
 
-      cy.get(testId("side-nav")).should("contain", "This is Section 1");
+    cy.get(testId("nav-section-link")).click();
 
-      // Can add a answer"
-      cy.get(testId("page-item")).click();
+    typeIntoDraftEditor(
+      testId("txt-section-title", "testid"),
+      "This is Section 1"
+    );
 
-      cy.get(testId("btn-add-answer")).click();
+    cy.get(testId("side-nav")).should("contain", "This is Section 1");
 
-      cy.get(testId(`btn-answer-type-currency`)).click();
+    // Can add a answer"
+    cy.get(testId("page-item")).click();
 
-      cy.get("[data-test='txt-answer-label']").type("This is an answer label");
+    cy.get(testId("btn-add-answer")).click();
 
-      cy.get("[data-test='txt-answer-description']").type(
-        "This is an answer description"
-      );
+    cy.get(testId(`btn-answer-type-currency`)).click();
 
-      // can switch to a Runner preview.", () => {
-      cy.get(`[data-test="btn-preview"]`)
-        .invoke("removeAttr", "target")
-        .click();
-    });
+    cy.get("[data-test='txt-answer-label']").type("This is an answer label");
+
+    cy.get("[data-test='txt-answer-description']").type(
+      "This is an answer description"
+    );
   });
 
-  describe("Runner previewing", () => {
-    it("Contains all the necessary fields in the correct formatting", () => {
-      cy.get(testId(`question-title`, "qa")).should(
-        "contain",
-        "This is Page 1"
-      );
+  it("Can be viewed in runner", () => {
+    cy.contains(title)
+      .first()
+      .click();
 
-      cy.get(testId(`input-text`, "qa")).should("exist");
-    });
+    // can switch to a Runner preview.", () => {
+    cy.get(`[data-test="btn-preview"]`)
+      .invoke("removeAttr", "target")
+      .click();
+
+    cy.get("button[name='action[start_questionnaire]']").click();
+    cy.get(testId(`question-title`, "qa")).should("contain", "This is Page 1");
+
+    cy.get(testId(`input-text`, "qa")).should("exist");
   });
 });
