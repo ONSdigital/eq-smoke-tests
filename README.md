@@ -31,3 +31,8 @@ To run on eq-staging env in headless mode
 ```
 BASE_URL=https://staging-author.dev.eq.ons.digital yarn test_headless
 ```
+
+To run against local environment
+```
+BASE_URL=http://localhost:3000 yarn cypress:open
+```
