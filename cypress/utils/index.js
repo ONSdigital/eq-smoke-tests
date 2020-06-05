@@ -24,7 +24,7 @@ export function setQuestionnaireSettings({ title, type }) {
       cy.get(testId("select-questionnaire-type")).select(type);
     }
 
-    cy.get("label[for='navigation']").click();
+    cy.get(testId("navigation")).click();
 
     cy.get("form").submit();
   });
