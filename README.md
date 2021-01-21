@@ -7,7 +7,7 @@
 
 <!-- PROJECT LOGO -->
 
-<h3 align="center">EQ Smoke Tests</h3>
+<h3 align="center">Smoke Tests</h3>
 
 <p align="center">The repository for EQs smoke tests.</p>
 
