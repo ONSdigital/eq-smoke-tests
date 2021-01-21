@@ -57,7 +57,7 @@ This project supplements the [Author](https://github.com/ONSdigital/eq-author-ap
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
-## Prerequesites
+## Prerequisites
 
 Author uses [Firebase](https://firebase.google.com/) to authenticate users. If using the included Docker Compose configuration to spin up the application, you must have an account with Firebase and register an application.
 
