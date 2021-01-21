@@ -59,9 +59,9 @@ To get a local copy up and running follow these simple example steps.
 
 ## Prerequesites
 
-Author uses [Firebase](#https://firebase.google.com/) to authenticate users. If using the included Docker Compose configuration to spin up the application, you must have an account with Firebase and register an application.
+Author uses [Firebase](https://firebase.google.com/) to authenticate users. If using the included Docker Compose configuration to spin up the application, you must have an account with Firebase and register an application.
 
-1. Go to [https://firebase.google.com/](#https://firebase.google.com/)
+1. Go to [https://firebase.google.com/](https://firebase.google.com/)
 2. Click "Get started".
 3. Click "Add project".
 4. Give your project a name; click "Continue".
