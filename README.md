@@ -9,7 +9,7 @@
 
 <h3 align="center">Smoke Tests</h3>
 
-<p align="center">The repository for EQs smoke tests.</p>
+<p align="center">The repository for EQ Author's smoke tests.</p>
 
 
 
