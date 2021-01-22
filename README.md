@@ -70,7 +70,7 @@ Author uses [Firebase](https://firebase.google.com/) to authenticate users. If u
 
 You will now have a Firebase project and will be taken to its home screen. Author uses email and password to authenticate its users, so you must add this capability to the project you have just created.
 
-1. On the left hand side there is a navigation bar. On this, click "Authentication".
+1. On the left hand side there is a navigation bar. On this, click "Authentication" under the "Build" heading.
 2. You will be taken to a landing page. Click "Get started".
 3. You will be taken to a list of sign-in methods, all of which will be disabled.
 4. Click "Email/Password".
