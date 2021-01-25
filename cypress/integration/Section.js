@@ -10,7 +10,7 @@ describe("Section", () => {
 
   beforeEach(() => {
     cy.visit("/");
-    cy.wait(1000)
+    cy.wait(2000)
     cy.get(`${testId("table-row")} span`)
       .contains(questionnaireTitle)
       .click();
