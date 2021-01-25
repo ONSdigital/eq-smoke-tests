@@ -1,0 +1,36 @@
+name: Functional Tests
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: yarn
+      - name: Boot up EQ
+        run: docker-compose up -d
+        env:
+          REACT_APP_FIREBASE_PROJECT_ID: ${{secrets.REACT_APP_FIREBASE_PROJECT_ID}}
+          REACT_APP_FIREBASE_API_KEY: ${{secrets.REACT_APP_FIREBASE_API_KEY}}
+          FIREBASE_PROJECT_ID: ${{secrets.FIREBASE_PROJECT_ID}}
+      - name: Wait for Author
+        run: ./scripts/wait_for_author.sh
+      - name: Wait for API
+        run: ./scripts/wait_for_api.sh
+      - name: Wait for Publisher
+        run: ./scripts/wait_for_publisher.sh
+      - name: Wait for Runner
+        run: ./scripts/wait_for_runner.sh
+      - name: Run tests
+        run: yarn test_headless

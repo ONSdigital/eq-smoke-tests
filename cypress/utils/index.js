@@ -7,39 +7,30 @@ export const signIn = () => {
   cy.get("button[type=submit]").click();
 };
 
-export const addQuestionnaire = title => {
+export const createQuestionnaire = ({
+  title,
+  shortTitle,
+  type,
+  sectionNavigation,
+  answerSummary,
+}) => {
   cy.get(testId("create-questionnaire")).click();
-  setQuestionnaireSettings({ title, type: "Business" });
-};
 
-export function setQuestionnaireSettings({ title, type }) {
-  cy.get(testId("questionnaire-settings-modal")).within(() => {
-    if (title) {
-      cy.get(testId("txt-questionnaire-title"))
-        .clear()
-        .type(title);
-    }
+  cy.get(testId("txt-questionnaire-title")).clear().type(title);
 
-    if (type) {
-      cy.get(testId("select-questionnaire-type")).select(type);
-    }
+  if (shortTitle) {
+    cy.get(testId("txt-questionnaire-short-title")).clear().type(shortTitle);
+  }
 
+  cy.get(testId("select-questionnaire-type")).select(type || "Business");
+
+  if (sectionNavigation) {
     cy.get(testId("navigation")).click();
+  }
 
-    cy.get("form").submit();
-  });
-}
+  if (answerSummary) {
+    cy.get(testId("summary")).click();
+  }
 
-export const typeIntoDraftEditor = (selector, text) => {
-  cy.log("Typing into RTE", text)
-    .get(selector)
-    .then(input => {
-      var textarea = input.get(0);
-      textarea.dispatchEvent(new Event("focus"));
-
-      var textEvent = document.createEvent("TextEvent");
-      textEvent.initTextEvent("textInput", true, true, null, text);
-      textarea.dispatchEvent(textEvent);
-      textarea.dispatchEvent(new Event("blur"));
-    });
+  cy.get("form").submit();
 };
