@@ -10,7 +10,7 @@ describe("Section", () => {
 
   beforeEach(() => {
     cy.visit("/");
-    cy.wait(2000)
+    
     cy.get(`${testId("table-row")} span`)
       .contains(questionnaireTitle)
       .click();
@@ -24,6 +24,7 @@ describe("Section", () => {
     cy.get(testId("btn-add-section")).click();
 
     cy.get(testId("nav-section-link")).should("have.length", 2);
+    cy.wait(2000)
   });
 
   it("Can delete a section", () => {
