@@ -13,6 +13,7 @@ describe("Section", () => {
 
     cy.get(`${testId("table-row")} span`)
       .contains(questionnaireTitle)
+      .first()
       .click();
   });
 
