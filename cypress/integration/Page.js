@@ -1,10 +1,9 @@
-import { signIn, testId, createQuestionnaire } from "../utils";
+import { signIn, signOut, testId, createQuestionnaire } from "../utils";
 
 describe("Page", () => {
   const questionnaireTitle = "Page";
   before(() => {
-    cy.visit("/");
-
+    signOut();
     signIn();
 
     createQuestionnaire({ title: questionnaireTitle });

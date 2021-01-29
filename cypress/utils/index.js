@@ -1,5 +1,15 @@
 export const testId = (id, attr = "test") => `[data-${attr}="${id}"]`;
 
+export const signOut = () => {
+  cy.visit("/");
+  cy.wait(2000);
+  cy.get("body").then(($body) => {
+    if ($body.find("span[data-test=username]").length) {   //evaluates as true
+        cy.get("span[data-test=username]").click();
+    }
+  });
+}
+
 export const signIn = () => {
   cy.get("input[name=email]").type("cypressTest@ons.gov.uk");
   cy.get("button[type=submit]").click();
