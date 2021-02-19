@@ -12,8 +12,6 @@ describe("Questionnaire", () => {
 
     createQuestionnaire({ title, shortTitle, type: "Business" });
 
-    cy.get(testId("nav-section-link")).should("have.length", 1);
-
     cy.get(testId("btn-settings")).click();
 
     cy.get(testId("change-questionnaire-title"))
@@ -27,8 +25,6 @@ describe("Questionnaire", () => {
     const title = "It can create a social questionnaire";
 
     createQuestionnaire({ title, shortTitle, type: "Social" });
-
-    cy.get(testId("nav-section-link")).should("have.length", 1);
 
     cy.get(testId("btn-settings")).click();
 
