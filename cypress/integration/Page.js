@@ -19,21 +19,21 @@ describe("Page", () => {
   });
 
   it("Can create a new page", () => {
-    cy.get(testId("nav-page-link")).should("have.length", 1);
+    cy.get(testId("NavItem")).should("have.length", 2);
 
-    cy.get(testId("nav-section-link")).first().click();
+    cy.get(testId("CollapsibleNavItem-title")).first().click();
 
     cy.get(testId("btn-add")).click();
 
     cy.get(testId("btn-add-question-page")).click();
 
-    cy.get(testId("nav-page-link")).should("have.length", 2);
+    cy.get(testId("NavItem")).should("have.length", 3);
   });
 
   it("Can delete a page", () => {
-    cy.get(testId("nav-page-link")).should("have.length", 2);
+    cy.get(testId("NavItem")).should("have.length", 3);
 
-    cy.get(testId("nav-page-link")).first().click();
+    cy.get(testId("NavItem-title")).eq(1).click();
 
     cy.get(testId("btn-delete"))
       .click()
@@ -41,12 +41,12 @@ describe("Page", () => {
         cy.get(testId("btn-delete-modal")).click();
       });
 
-    cy.get(testId("nav-page-link")).should("have.length", 1);
+    cy.get(testId("NavItem")).should("have.length", 2);
   });
 
   it("Can write a page title", () => {
     const pageTitle = "A page title.";
-    cy.get(testId("nav-page-link")).first().click();
+    cy.get(testId("NavItem")).eq(1).click();
 
     cy.get(testId("txt-question-title", "testid"))
       .clear()
@@ -60,7 +60,7 @@ describe("Page", () => {
 
   it("Can add a valid answer to the page", () => {
     const answerLabel = "An answer label.";
-    cy.get(testId("nav-page-link")).first().click();
+    cy.get(testId("NavItem")).eq(1).click();
 
     cy.get(testId("btn-add-answer")).click();
 
