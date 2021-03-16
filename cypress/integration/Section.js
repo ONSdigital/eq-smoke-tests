@@ -18,7 +18,7 @@ describe("Section", () => {
 
   it("Can create a section", () => {
 
-    cy.get(testId("btn-add")).click();
+    cy.get(testId("btn-add-menu")).click();
 
     cy.get(testId("btn-add-section")).click();
 
