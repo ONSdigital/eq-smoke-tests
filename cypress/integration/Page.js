@@ -23,7 +23,7 @@ describe("Page", () => {
 
     cy.get(testId("CollapsibleNavItem-title")).first().click();
 
-    cy.get(testId("btn-add")).click();
+    cy.get(testId("btn-add-menu")).click();
 
     cy.get(testId("btn-add-question-page")).click();
 
