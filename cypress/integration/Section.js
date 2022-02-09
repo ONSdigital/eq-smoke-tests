@@ -27,9 +27,9 @@ describe("Section", () => {
   });
 
   it("Can delete a section", () => {
-    cy.get(testId("CollapsibleNavItem")).should("have.length", 2);
+    cy.get(testId("CollapsibleNavItem")).should("have.length", 4);
 
-    cy.get(testId("CollapsibleNavItem-title")).last().click();
+    cy.get(testId("CollapsibleNavItem-title")).eq(2).click();
 
     cy.get(testId("btn-delete"))
       .click()
@@ -37,6 +37,6 @@ describe("Section", () => {
         cy.get(testId("btn-delete-modal")).click();
       });
 
-    cy.get(testId("CollapsibleNavItem")).should("have.length", 1);
+    cy.get(testId("CollapsibleNavItem")).should("have.length", 2);
   });
 });
