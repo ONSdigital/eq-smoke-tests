@@ -9,21 +9,20 @@ describe("Section", () => {
   });
 
   beforeEach(() => {
-    cy.visit("/");
-    
+    cy.visit("/#/");
+
     cy.get(`${testId("table-row")} span`)
       .contains(questionnaireTitle)
       .click();
   });
 
   it("Can create a section", () => {
-
     cy.get(testId("btn-add-menu")).click();
 
     cy.get(testId("btn-add-section")).click();
 
     cy.get(testId("CollapsibleNavItem")).should("have.length", 2);
-    cy.wait(2000)
+    cy.wait(2000);
   });
 
   it("Can delete a section", () => {

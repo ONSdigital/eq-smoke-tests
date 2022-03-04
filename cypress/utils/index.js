@@ -2,9 +2,8 @@ export const testId = (id, attr = "test") => `[data-${attr}="${id}"]`;
 
 export const signIn = () => {
   cy.get("input[name=email]").type("cypressTest@ons.gov.uk");
-  cy.get("button[type=submit]").click();
   cy.get("input[name=password]").type("cypress");
-  cy.get("button[type=submit]").click();
+  cy.get("button[name=sign-in]").click();
 };
 
 export const createQuestionnaire = ({
