@@ -18,7 +18,7 @@ describe("Page", () => {
   });
 
   it("Can create a new page", () => {
-    cy.get(testId("NavItem")).should("have.length", 3);
+    cy.get(testId("NavItem")).should("have.length", 2);
 
     cy.get(testId("CollapsibleNavItem-title")).first().click();
 
@@ -26,11 +26,11 @@ describe("Page", () => {
 
     cy.get(testId("btn-add-question-page")).click();
 
-    cy.get(testId("NavItem")).should("have.length", 4);
+    cy.get(testId("NavItem")).should("have.length", 3);
   });
 
   it("Can delete a page", () => {
-    cy.get(testId("NavItem")).should("have.length", 4);
+    cy.get(testId("NavItem")).should("have.length", 3);
 
     cy.get(testId("NavItem-title")).eq(1).click();
 
@@ -40,7 +40,7 @@ describe("Page", () => {
         cy.get(testId("btn-delete-modal")).click();
       });
 
-    cy.get(testId("NavItem")).should("have.length", 3);
+    cy.get(testId("NavItem")).should("have.length", 2);
   });
 
   it("Can write a page title", () => {
