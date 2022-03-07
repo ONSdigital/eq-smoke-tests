@@ -4,7 +4,7 @@ describe("Questionnaire", () => {
   const shortTitle = "Questionnaire";
 
   beforeEach(() => {
-    cy.visit("/");
+    cy.visit("/#/");
   });
 
   it("Can create a business questionnaire", () => {
